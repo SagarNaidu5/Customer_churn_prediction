@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churn Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand {
+            color: white !important;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .card-body {
+            background-color: #ffffff;
+            padding: 30px;
+        }
+        h5.card-title {
+            font-size: 1.8em;
+            color: #007bff;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+            width: 100%;
+            font-size: 1.1em;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+        .alert-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .alert-success {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Churn Prediction</a>
+    </nav>
+    
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Enter Customer Details</h5>
+                        <form action="http://localhost:5001/" method="POST">
+                            <div class="form-group">
+                                <label for="query1">Gender:</label>
+                                <input type="text" class="form-control" id="query1" name="query1" value="{{ query1 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query2">Senior Citizen:</label>
+                                <input type="number" class="form-control" id="query2" name="query2" value="{{ query2 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query3">Partner:</label>
+                                <input type="text" class="form-control" id="query3" name="query3" value="{{ query3 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query4">Dependents:</label>
+                                <input type="text" class="form-control" id="query4" name="query4" value="{{ query4 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query5">Tenure:</label>
+                                <input type="number" class="form-control" id="query5" name="query5" value="{{ query5 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query6">Phone Service:</label>
+                                <input type="text" class="form-control" id="query6" name="query6" value="{{ query6 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query7">Multiple Lines:</label>
+                                <input type="text" class="form-control" id="query7" name="query7" value="{{ query7 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query8">Internet Service:</label>
+                                <input type="text" class="form-control" id="query8" name="query8" value="{{ query8 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query9">Online Security:</label>
+                                <input type="text" class="form-control" id="query9" name="query9" value="{{ query9 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query10">Online Backup:</label>
+                                <input type="text" class="form-control" id="query10" name="query10" value="{{ query10 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query11">Device Protection:</label>
+                                <input type="text" class="form-control" id="query11" name="query11" value="{{ query11 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query12">Tech Support:</label>
+                                <input type="text" class="form-control" id="query12" name="query12" value="{{ query12 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query13">Streaming TV:</label>
+                                <input type="text" class="form-control" id="query13" name="query13" value="{{ query13 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query14">Streaming Movies:</label>
+                                <input type="text" class="form-control" id="query14" name="query14" value="{{ query14 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query15">Contract:</label>
+                                <input type="text" class="form-control" id="query15" name="query15" value="{{ query15 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query16">Paperless Billing:</label>
+                                <input type="text" class="form-control" id="query16" name="query16" value="{{ query16 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query17">Payment Method:</label>
+                                <input type="text" class="form-control" id="query17" name="query17" value="{{ query17 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query18">Monthly Charges:</label>
+                                <input type="number" step="0.01" class="form-control" id="query18" name="query18" value="{{ query18 }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="query19">Total Charges:</label>
+                                <input type="number" step="0.01" class="form-control" id="query19" name="query19" value="{{ query19 }}" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="output">
+                    <h3>Columns passed to the model:</h3>
+                    <ul>
+                        {% for column in model_columns %}
+                            <li>{{ column }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% if output1 %}
+                        <div class="alert alert-info" role="alert">
+                            {{ output1 }}
+                        </div>
+                    {% endif %}
+                    {% if output2 %}
+                        <div class="alert alert-success" role="alert">
+                            {{ output2 }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
